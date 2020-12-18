@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+  <head>
+   
+  </head>
+
+  <body>
+    <div class="grid">
+      <img style="border: 2px solid green" id="R0C0" src="someimage.bmp" onclick="handleSelect(id)">
+      <img style="border: 2px solid blue" id="R0C1" src="someimage.bmp" onclick="handleSelect(id)">
+      <img style="border: 2px solid purple" id="R0C2" src="someimage.bmp" onclick="handleSelect(id)">
+    </div>
+    <div class="grid">
+      <img id="R1C0" src="someimage.bmp" onclick="handleSelect(id)">
+      <img id="R1C1" src="someimage.bmp" onclick="handleSelect(id)">
+      <img id="R1C2" src="someimage.bmp" onclick="handleSelect(id)">
+    </div>
+    <div class="grid">
+      <img id="R2C0" src="someimage.bmp" onclick="handleSelect(id)">
+      <img id="R2C1" src="someimage.bmp" onclick="handleSelect(id)">
+      <img id="R2C2" src="someimage.bmp" onclick="handleSelect(id)">
+    </div>
+  </body>
+  
+   <style>
+      div.grid
+        {
+        width:180px;
+        height:42px;
+        border:none;
+        }
+      img
+        {
+        width:50px;
+        height:50px;
+        margin:2px;
+        float:left;
+        border: 1px solid red;
+        }
+    </style>
+    <script>
+      function handleSelect(xId)
+        {
+        //
+        // TESTPOINT
+        alert("TESTPOINT\r>Grid: " + xId);
+        //
+        // GET BORDER COLOR
+        // NOTE: An empty or blank value when you can see a border means the tag itself does not
+        //            have 'border properties' (style="border: 2px{width} solid{style} green{color}").
+        //            although there can be a border detailed via css local or external or via code (script).
+        //            If the 'border properties' are returned then they were setup at the tag as
+        //            above or the 'border properties' were updated by script code not css code.
+        //            If the 'border properties' are NOT returned then they were setup via css.
+        //            Thus, since everything seems to be heading toward edit on the fly (live) then css is NOT the way to go (learning).
+        // HINT: Margin property is also not readable if set via css. Most likely all the properties values are the same way.
+        //           Thus, setting the property values of a tag should be set at the tag control.
+        // (works) cBorder=document.getElementById(xId).style.borderWidth;
+        // (works) cBorder=document.getElementById(xId).style.borderStyle;
+        // (works) cBorder=document.getElementById(xId).style.borderColor;
+        // (works) cBorder=document.getElementById(xId).style.border;
+        //cBorder=document.getElementById(xId).style.border;
+        cBorder=document.getElementById(xId).style.margin;
+        alert("TESTPOINT\r>Grid: " + xId + "\r>Border: " + cBorder);
+        //
+        // SELECT IMAGE
+        document.getElementById(xId).style.margin="1px";
+        document.getElementById(xId).style.border="2px solid gold";
+        document.getElementById(xId).innerHTML=xId;
+        alert("TESTPOINT\r>Grid: " + xId + "\r>Border: " + cBorder + "\r>[set border color gold]");
+        //
+        // GET BORDER COLOR
+        //var cBorder=document.getElementById(xId).style.border-Color;  //Error
+        //var cBorder=document.getElementById(xId).style.border-color;  //Error
+        //var cBorder=document.getElementById(xId).style.borderColor;   //Error
+        //var cBorder=document.getElementById(xId).style.bordercolor;   //Undefined
+        cBorder=document.getElementById(xId).style.border;      //Empty
+        alert("TESTPOINT\r>Grid: " + xId + "\r>Border: " + cBorder + "\r>[set border color gold]" + "\r>Border: " + cBorder);
+        }
+    </script>
+</html>
